@@ -13,14 +13,16 @@ module.exports = {
 
           fullGradient1 : "#fceabb" , 
           fullGradient2 : "#f8b500" , 
+
+          
       },
 
       spacing: {
-        'height': '39rem', 
-        'width': '30rem', 
-        'imageMainHeight': '10rem', 
-        'cardTopHeight': '20rem', 
-        'iconWidth' : '2.3rem'
+
+        'insideInputPadding' : '0.4rem' , 
+        'widthOfResult' : '40rem' ,
+        'textSize' : 'xl' , 
+        'borderLine' : '1' , 
       },
        
     },

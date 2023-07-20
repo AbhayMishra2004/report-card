@@ -1,213 +1,247 @@
-const name = document.getElementById('Name');
-const email = document.getElementById('email') ; 
-const emailTag = document.getElementById('emailTag') ; 
-const phone = document.getElementById('phone') ; 
-const dob = document.getElementById('dob') ; 
-const insitute = document.getElementById('insitute') ; 
-const role = document.getElementById('role') ; 
-const IName = document.getElementById('IName') ; 
-const linkdin = document.getElementById('linkdin') ; 
-const twitter = document.getElementById('twitter') ; 
-const github = document.getElementById('github') ; 
-const profilePic = document.getElementById('image') ;
+// INPUT DETAILS
+const name = document.getElementById('name')  ; 
+const roll = document.getElementById('roll')  ; 
+const dob = document.getElementById('dob')  ; 
+const standard = document.getElementById('standard')  ; 
+const section = document.getElementById('section')  ; 
+const contact = document.getElementById('contact')  ; 
+const Fname = document.getElementById('Fname')  ; 
+const Mname = document.getElementById('Mname')  ; 
+const address = document.getElementById('address')  ;
+const form = document.getElementById('form')  ;
+
+// REULT DETAILS
+const result = document.getElementById('result')  ;
+const nameR = document.getElementById('nameR')  ; 
+const rollR = document.getElementById('rollR')  ; 
+const dobR = document.getElementById('dobR')  ; 
+const standardR = document.getElementById('standardR')  ; 
+const sectionR = document.getElementById('sectionR')  ; 
+const contactR = document.getElementById('contactR')  ; 
+const FnameR = document.getElementById('FnameR')  ; 
+const MnameR = document.getElementById('MnameR')  ; 
+const addressR = document.getElementById('addressR')  ;
+
+// ENGLISH INPUT
+const englishAnnualInput = document.getElementById('english')  ;
+const englishMidInput = document.getElementById('englihM')  ;
+const englishPracticalInput = document.getElementById('englishP')  ;
+
+// HINDI INPUT 
+const hindiAnnualInput = document.getElementById('hindi')  ;
+const hindiMidInput = document.getElementById('hindiM')  ;
+const hindiPracticalInput = document.getElementById('hindiP')  ;
+
+// PHYSICS INPUT 
+const physicsAnnualInput = document.getElementById('physics')  ;
+const physicsMidInput = document.getElementById('physicsM')  ;
+const physicsPracticalInput = document.getElementById('physicsP')  ;
+
+// CHEMISTRY INPUT 
+const chemistryAnnualInput = document.getElementById('chemistry')  ;
+const chemistryMidInput = document.getElementById('chemistryM')  ;
+const chemistryPracticalInput = document.getElementById('chemistryP')  ;
+
+// MATHS INPUT 
+const mathsAnnualInput = document.getElementById('maths')  ;
+const mathsMidInput = document.getElementById('mathsM')  ;
+const mathsPracticalInput = document.getElementById('mathsP')  ;
 
 
-// OUTPUT 
-const cardProfilePic = document.getElementById('cardProfilePic') ;
-const cardName = document.getElementById('cardName') ;
-const cardRole = document.getElementById('cardRole') ; 
-const cardEmail = document.getElementById('cardEmail') ;
-const cardPhone = document.getElementById('cardPhone') ;
-const cardDate = document.getElementById('cardDate') ;
-const cardInstituteType = document.getElementById('cardInstituteType') ;
-const cardInstituteName = document.getElementById('cardInstituteName') ;
-const cardLinkedin = document.getElementById('cardLinkedin') ;
-const cardTwitter = document.getElementById('cardTwitter') ;
-const cardGithub = document.getElementById('cardGithub') ;
+// ENGLISH RESULT 
+const AnnualEnglish = document.getElementById('AnnualEnglish')  ;
+const midEnglish = document.getElementById('midEnglish')  ;
+const PracticalEnglish = document.getElementById('PracticalEnglish')  ;
 
+// HINDI RESULT 
+const AnnualHindi = document.getElementById('AnnualHindi')  ;
+const midHindi = document.getElementById('midHindi')  ;
+const PracticalHindi = document.getElementById('PracticalHindi')  ;
+
+// PHYSICS RESULT 
+const AnnualPhysics = document.getElementById('AnnualPhysics')  ;
+const midPhysics = document.getElementById('midPhysics')  ;
+const PracticalPhysics = document.getElementById('PracticalPhysics')  ;
+
+// CHEMISTRY RESULT 
+const AnnualChemistry = document.getElementById('AnnualChemistry')  ;
+const midChemistry = document.getElementById('midChemistry')  ;
+const PracticalChemistry = document.getElementById('PracticalChemistry')  ;
+
+// MATHS RESULT 
+const AnnualMaths = document.getElementById('AnnualMaths')  ;
+const midMaths = document.getElementById('midMaths')  ;
+const PracticalMaths = document.getElementById('PracticalMaths')  ;
+
+
+// CGPA and rank and close button 
+const updateCGPA = document.getElementById('cgpa')  ;
+const updateRank = document.getElementById('rank')  ;
+const closeButton = document.getElementById('close-button')  ;
+
+// FOR THE PDF DOWNLOAD
 // FOR DOWNLOAD
 const cardDownload = document.getElementById('cardDownload') ;
-const mainIdentityCard = document.getElementById('mainIdentityCard') ;
-
-console.log(emailTag) ;
 
 
-/******************************** FOR DOWNLOADING THE CARD ***************************************/
+/******************************** FOR DOWNLOADING THE RESULT ***************************************/
  cardDownload.addEventListener('click', () => {
     console.log('yes');
 
-    const pdf = new jsPDF(); // INSTANCE 
+    const pdf = new jsPDF({
 
-    pdf.addHTML(mainIdentityCard, () => {
-      pdf.save("profileCard.pdf");
+        orientation: 'portrait', // 'portrait' or 'landscape'
+        unit: 'mm', // Measurement unit for dimensions
+        format: 'a4' 
+    }); // INSTANCE 
+
+
+    pdf.addHTML(result, () => {
+      pdf.save("result.pdf");
     });
 });
 
 
+/************************************************* FORM SUBMIT EVENT *********************************************************8*/
+form.addEventListener('submit' , (event)=> {
 
-/********************************  IN THE CHANGING OF THE PROFILE PIC ***************************************/
-profilePic.addEventListener('change' , () => {
+    // FORM KE DEFAULT BEHAVIOUR KO BAND KARO 
+    event.preventDefault();
 
-    // GET THE IMAGE AND GET IT'S SRC LINK . 
-    const selectedFile = profilePic.files[0] ; 
-    const imageSrc = URL.createObjectURL(selectedFile) ; 
+    // FORM DISPLAY KO BAND KARO 
+    form.style.display = 'none';
 
-    console.log(imageSrc) ; 
-    cardProfilePic.style.backgroundImage = `url(${imageSrc})` ;
+    // TAKE ALL THE STUDENT DETAILS OF FORM
+    const nameValue = name.value ; 
+    const rollValue = roll.value ; 
+    const dobValue = dob.value ; 
+    const standardValue = standard.value ; 
+    const sectionValue = section.value ; 
+    const contactValue = contact.value ; 
+    const FnameValue = Fname.value ; 
+    const MnameValue = Mname.value ; 
+    const addressValue = address.value ; 
+
+    // SHOW STUDNENT DETAILS IN THE UI 
+    showUI(nameValue , nameR) ; 
+    showUI(rollValue , rollR) ; 
+    showUI(standardValue , standardR) ; 
+    showUI(sectionValue , sectionR) ; 
+    showUI(contactValue , contactR) ; 
+    showUI(FnameValue , FnameR) ; 
+    showUI(MnameValue , MnameR) ; 
+    showUI(addressValue , addressR) ; 
+    dateOfBirth(dobValue , dobR)
+
+    console.log(dobR) ; 
+
+    // TAKE ALL THE MARKS 
+    const englishAnnualInputValue = englishAnnualInput.value ; 
+    const englishMidInputValue = englishMidInput.value ; 
+    const englishPracticalInpuValue = englishPracticalInput.value ; 
+
+    const hindiAnnualInputValue = hindiAnnualInput.value ; 
+    const hindiMidInputValue = hindiMidInput.value ; 
+    const hindiPracticalInpuValue = hindiPracticalInput.value ; 
+
+    const physicsAnnualInputValue = physicsAnnualInput.value ; 
+    const physicsMidInputValue = physicsMidInput.value ; 
+    const physicsPracticalInpuValue = physicsPracticalInput.value ; 
+
+    const chemistryAnnualInputValue = chemistryAnnualInput.value ; 
+    const chemistryMidInputValue = chemistryMidInput.value ; 
+    const chemistryPracticalInpuValue = chemistryPracticalInput.value ; 
+
+    const mathsAnnualInputValue = mathsAnnualInput.value ; 
+    const mathsMidInputValue = mathsMidInput.value ; 
+    const mathsPracticalInputValue = mathsPracticalInput.value ; 
+
+    // UPDATE MARKS IN UI
+    showUI(englishAnnualInputValue , AnnualEnglish) ; 
+    showUI(englishMidInputValue , midEnglish) ; 
+    showUI(englishPracticalInpuValue , PracticalEnglish) ; 
+    
+    showUI(hindiAnnualInputValue , AnnualHindi) ; 
+    showUI(hindiMidInputValue , midHindi) ; 
+    showUI(hindiPracticalInpuValue , PracticalHindi) ; 
+
+    showUI(physicsAnnualInputValue , AnnualPhysics) ; 
+    showUI(physicsMidInputValue , midPhysics) ; 
+    showUI(physicsPracticalInpuValue , PracticalPhysics) ; 
+
+    showUI(chemistryAnnualInputValue , AnnualChemistry) ; 
+    showUI(chemistryMidInputValue , midChemistry) ; 
+    showUI(chemistryPracticalInpuValue , PracticalChemistry) ; 
+    
+    showUI(mathsAnnualInputValue , AnnualMaths) ; 
+    showUI(mathsMidInputValue , midMaths) ; 
+    showUI(mathsPracticalInputValue , PracticalMaths) ; 
+
+    // FIND CGPA AND UPDATE IN UI (Why it is coming NAN)
+    cgpa(englishAnnualInputValue, englishMidInputValue , englishPracticalInpuValue ,  hindiAnnualInputValue, hindiMidInputValue , hindiPracticalInpuValue  , mathsAnnualInput, mathsMidInputValue , mathsPracticalInputValue , physicsAnnualInputValue , physicsMidInputValue , physicsPracticalInpuValue , chemistryAnnualInputValue, chemistryMidInputValue , chemistryPracticalInpuValue ) ; 
+
+    // RANK
+    rank(updateRank) ; 
+
+    // RESULT DISPLAY ON KARO 
+    result.style.display = 'block' ; 
+    closeButton.style.display = 'block' ; 
 })
 
 
 
-/********************************  IN THE CHANGING OF THE NAME **********************************************/
-name.addEventListener('input' , () => {
+/************************************************* UI INFO UPDATE **********************************************************/
+function showUI(grabValue , showInValue)
+{
+    if(grabValue == '')
+            return ; 
 
-    var nameValue = name.value ;
-    console.log(nameValue); 
-    cardName.textContent = nameValue ;
+    showInValue.textContent = grabValue;
+}
+
+/************************************************* UI INFO UPDATE **********************************************************/
+function cgpa() 
+{
+    var n = arguments.length;
+    var total = 0;
+
+    for (var i = 0; i < n; i++) 
+    {
+        total += parseInt(arguments[i]) ;
+    }
+  
+    console.log("Total marks:", total);
+}
+
+/********************************  DATE UPDATE  **********************************************/
+function dateOfBirth(byUpdate , toUpdate)
+{
+    if(byUpdate == '')
+        return ; 
     
-    // AGAER 0 LENGTH KA HO JAYE INPUT TO .
-    if(nameValue.length == 0)
-    {
-        cardName.textContent = "Your Name";
-    }
-}) 
-
-
-/********************************  IN THE CHANGING OF THE Role **********************************************/
-role.addEventListener('input' , () => {
-
-    var roleValue = role.value ;
-    console.log(roleValue) ; 
-    cardRole.textContent = roleValue ;
-    
-    // AGAER 0 LENGTH KA HO JAYE INPUT TO .
-    if(roleValue.length == 0)
-    {
-        cardRole.textContent = "Role";
-    }
-}) 
-
-/********************************  IN THE CHANGING OF THE EMAIL **********************************************/
-email.addEventListener('input' , () => {
-
-    var emailValue = email.value ;
-    console.log(emailValue , emailValue.length); 
-    cardEmail.textContent = emailValue ;
-    
-    // AGAER 0 LENGTH KA HO JAYE INPUT TO .
-    if(emailValue.length == 0)
-    {
-        cardEmail.textContent = "gmail.com";
-    }
-
-    // AGAER 0 LENGTH KA HO JAYE INPUT TO .
-    if(emailValue.length >= 15)
-    {
-        cardEmail.style.fontSize = '0.9rem' ; 
-        emailTag.style.fontSize = '0.9rem' ; 
-        emailTag.style.paddingRight = '0.25rem' ; 
-        // cardEmail.style.overflow = 'scroll';
-        // cardEmail.classList.add('hide-scrollbar');
-    }
-
-    else
-    {
-        cardEmail.style.fontSize = '1.5rem' ; 
-        emailTag.style.fontSize = '1.5rem' ; 
-    }
-}) 
-
-/********************************  IN THE CHANGING OF THE EMAIL **********************************************/
-phone.addEventListener('input' , () => {
-
-    var phoneValue = phone.value ;
-    console.log(phoneValue); 
-    cardPhone.textContent = phoneValue ;
-    
-    // AGAER 0 LENGTH KA HO JAYE INPUT TO .
-    if(phoneValue.length == 0)
-    {
-        cardPhone.textContent = "88567XXXXX";
-    }
-
-    // AGAR LENGTH JYADA HO JAYE 10 SE TO , NAHI LENA HAI 
-    if(phoneValue.length > 10)
-    {
-        cardPhone.textContent = "88567XXXXX";
-    }
-}) 
-
-
-/********************************  IN THE CHANGING OF THE DATE **********************************************/
-dob.addEventListener('input' , ()=> {
-
-    const dateValue = new Date(dob.value) ; 
+    const dateValue = new Date(byUpdate) ; 
 
     const year = dateValue.getFullYear();
     const month = dateValue.getMonth() + 1; // Adding 1 because months are zero-based
     const day = dateValue.getDate();
 
-     cardDate.textContent = `${day} / ${month} / ${year}` ; 
-})
-
-
-/********************************  IN THE SELECTION OF THE INSTITUTE TYPE **********************************************/
-
-insitute.addEventListener('change'  , () => {
-
-    const selectedValue = insitute.value ; 
-    cardInstituteType.textContent = `${selectedValue} : `;
-    cardInstituteType.style.textTransform = uppercase ;  
-})
-
-
-/********************************  IN THE CHANGING OF THE INSTITUTE NAME **********************************************/
-IName.addEventListener('input' , ()=> {
-
-    var instName = IName.value ;
-    cardInstituteName.textContent = instName ; 
-
-    if(instName.length == 0)
-    {
-        cardInstituteName.textContent = "XYZ"; 
-    }
-})
-
-
-/********************************  ADD LINK TO THE ALL THE SOCIAL MEDIA  **********************************************/
-
-
-// MAIN FUNCTION TO CHANGE THE VALUE OF ALL THE ATTRIBUTES 
-
-function updateInDOM(platform , value)
-{
-    platform.href = '' ; 
-    platform.href = value ; 
+     toUpdate.textContent = `${day} / ${month} / ${year}` ; 
 }
 
 
-// FOR LINKEDIN
-linkdin.addEventListener('input' , ()=> {
+/************************************************* RANK UPDATE **********************************************************/
+function rank(toUpdate)
+{
+    const curr = Math.ceil(Math.random() * (10));
+    toUpdate.textContent = curr ; 
+}
 
-    const linkdinValue = linkdin.value ; 
-    updateInDOM(cardLinkedin , linkdinValue) ; 
-})
 
+/************************************************* ON CLOSE BUTTON CLICK **********************************************************/
+closeButton.addEventListener('click' , ()=> {
 
-// FOR TWITTER
-twitter.addEventListener('input' , ()=> {
+    form.style.display = 'block'
+    result.style.display = 'none' ; 
+    closeButton.style.display = 'none' ; 
 
-    const twitterValue = linkdin.value ; 
-    updateInDOM(cardTwitter , twitterValue) ; 
-
-    console.log(cardTwitter.href) ; 
-})
-
-// FOR GITHUB
-github.addEventListener('input' , ()=> {
-
-    const githubValue = github.value ; 
-    updateInDOM(cardGithub , githubValue) ; 
-
-    console.log(github.href) ; 
 })
